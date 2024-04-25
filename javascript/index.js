@@ -1,13 +1,34 @@
 class Tetris {
     constructor(imageX, imageY, template) {
-        this.imageX = imageX;
         this.imageY = imageY;
+        this.imageX = imageX;
         this.template = template;
+        this.x = squareCountX / 2;
+        this.y = 0;
     }
 
     checkBottom() {
-
+        for (let i = 0; i < this.template.length; i++) {
+            for (let j = 0; j < this.template.length; j++) {
+                if (this.template[i][j] == 0) continue;
+                let realX = i + this.getTruncedPosition().x;
+                let realY = j + this.getTruncedPosition().y;
+                if (realY + 1 >= squareCountY) {
+                    return false;
+                }
+                if (gameMap[realY + 1][realX].imageX != -1) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
+
+
+    getTruncedPosition() {
+        return { x: Math.trunc(this.x), y: Math.trunc(this.y) }
+    }
+
 
     checkLeft() {
 
@@ -39,6 +60,7 @@ const imageSquareSize = 24;
 const size = 40;
 const framePerSecond = 60;
 const gameSpeed = 5;
+let whiteLineThickness = 4;
 const canvas = document.getElementById('canvas');
 
 const image = document.getElementById('image');
@@ -99,30 +121,95 @@ let gameLoop = () => {
 }
 
 let update = () => {
+    if (gameOver) return;
+    if (currentShape.checkBottom()) {
+        currentShape.y += 1;
+    }
+}
+
+let drawRect = (x, y, width, height, color) => {
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, width, height);
+}
+
+let drawBackground = () => {
+    drawRect(0, 0, canvas.width, canvas.height, 'black');
+    for (let i = 0; i < squareCountX; i++) {
+        drawRect(size * i - whiteLineThickness, 0, whiteLineThickness, canvas.height, 'grey');
+    }
+
+    for (let i = 0; i < squareCountY; i++) {
+        drawRect(0, size * i - whiteLineThickness, canvas.width, whiteLineThickness, 'grey');
+    }
+}
+
+let drawCurrentTetris = () => {
+    for (let i = 0; i < currentShape.template.length; i++) {
+        for (let j = 0; j < currentShape.template.length; j++) {
+            if (currentShape.template[i][j] == 0) continue;
+            ctx.drawImage(
+                image,
+                currentShape.imageX,
+                currentShape.imageY,
+                imageSquareSize,
+                imageSquareSize,
+                Math.trunc(currentShape.x) * size + size * i,
+                Math.trunc(currentShape.y) * size + size * j,
+                size,
+                size
+            );
+        }
+    }
+};
+
+let drawSquares = () => {
+}
+
+let drawNextShape = () => {
+
+}
+
+
+let drawGameOver = () => {
 
 }
 
 let draw = () => {
-
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBackground();
+    drawSquares();
+    drawCurrentTetris();
+    drawNextShape();
+    if (gameOver) {
+        drawGameOver();
+    }
 }
 
-let getRamdomShape = () => {
+let getRandomShape = () => {
     return Object.create(shapes[Math.floor(Math.random() * shapes.length)]);
-}
-
+};
 let resetVars = () => {
-    initial2DArray = []
+    initialTwoDArr = [];
     for (let i = 0; i < squareCountY; i++) {
+        let temp = [];
         for (let j = 0; j < squareCountX; j++) {
             temp.push({ imageX: -1, imageY: -1 });
         }
-        initial2DArray.push(temp);
+        initialTwoDArr.push(temp);
     }
     score = 0;
     gameOver = false;
-    currentShape = getRamdomShape();
-    nextShape = getRamdomShape();
-    gameMap = initial2DArray;
-}
+    currentShape = getRandomShape();
+    nextShape = getRandomShape();
+    gameMap = initialTwoDArr;
+};
 
+window.addEventListener("keydown", (event) => {
+    if (event.keyCode == 37) currentShape.moveLeft();
+    else if (event.keyCode == 38) currentShape.changeRotation();
+    else if (event.keyCode == 39) currentShape.moveRight();
+    else if (event.keyCode == 40) currentShape.moveBottom();
+});
+
+resetVars();
 gameLoop();
