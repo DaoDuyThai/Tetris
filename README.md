@@ -1,63 +1,31 @@
-# Project-name
+# Tetris
 
-Project-name is a ... built using .... This repository contains the source code and necessary files to run the project-name application.
+This repository brings you a delightful journey back to the classic arcade era with a playable Tetris clone entirely built using HTML and JavaScript!
 
 ## Screenshots
 
-![Screenshot 1](screenshots/screenshot1.png)
-
-![Screenshot 2](screenshots/screenshot2.png)
-
-## Features
-
-- **Features 1:** Features 1 Description
-- **Features 2:** Features 2 Description
-- **Features 3:** Features 3 Description
-- **Features 4:** Features 4 Description
-- **Features 5:** Features 5 Description
-- **Features 6:** Features 6 Description
+![Screenshot 1](screenshots/screenshot.png)
 
 ## Installation
-
-To run project-name locally, please ensure that you have the following prerequisites installed on your system:
-
-- Prerequisites 1
-- Prerequisites 2
 
 Follow the steps below to set up the project:
 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/DuyThaiddt/Project-name
+    git clone https://github.com/DuyThaiddt/Tetris
     ```
 
-2. **Navigate to the project directory:**
+2. **Open the index.html file in any browser to start the game**
 
-    ```bash
-    cd project-name
-    ```
+## Gameplay
+- Authentic Tetris gameplay: Rotate and place tetrominoes (those cool shapes) to clear lines and avoid a blocky build-up.
+- Intuitive controls: Use the arrow keys (↑, ↓, ←, →) or W, A, S, D keys to maneuver your tetrominoes with ease.
+- Clean and minimal design: Focus on the classic Tetris experience without distractions.
 
-3. **Step 3**
-
-    ```bash
-
-    ```
-
-4. **Step 4**
-
-    ```bash
-
-    ```
-
-5. **Step 5**
-
-    ```bash    
-    ```
-    
 ## Contributing
 
-Contributions to project-name are always welcome. If you would like to contribute, please follow these steps:
+Contributions to Tetris are always welcome. If you would like to contribute, please follow these steps:
 
 1. **Fork the repository.**
 2. **Create a new branch:**
@@ -82,22 +50,9 @@ Contributions to project-name are always welcome. If you would like to contribut
 
 Please make sure to adhere to the code style and conventions used in the project.
 
-## Acknowledgements
-
-Project-name makes use of the following open-source libraries and APIs:
-
-- libraries 1
-- libraries 2
-- libraries 3
-- libraries 4
-- libraries 5
-
-Special thanks to the developers and contributors of these projects for their valuable work.
-
-
 ## License
 
-The project-name is licensed under the [MIT License.](https://choosealicense.com/licenses/mit/)
+The Tetris is licensed under the [MIT License.](https://choosealicense.com/licenses/mit/)
 
 ## Contact
 
