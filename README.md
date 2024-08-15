@@ -13,7 +13,7 @@ Follow the steps below to set up the project:
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/DuyThaiddt/Tetris
+    git clone https://github.com/DaoDuyThai/Tetris
     ```
 
 2. **Open the index.html file in any browser to start the game**
